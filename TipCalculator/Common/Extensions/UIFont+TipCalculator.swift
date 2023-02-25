@@ -14,25 +14,20 @@ extension UIFont {
 }
 
 public enum FontStyle: String {
-  case light = "Light"
   case regular = "Regular"
-  case semibold = "Medium"
+  case demibold = "Demi Bold"
   case bold = "Bold"
-  case italicLight = "LightItalic"
-  case italic = "Italic"
-  case italicSemibold = "MediumItalic"
-  case italicBold = "BoldItalic"
 }
 
 extension FontStyle {
-  static let fontFamilyName = "AvenirNext"
+  static let fontFamilyName = "Avenir Next"
   
   var name: String {
     switch self {
     case .regular:
       return FontStyle.fontFamilyName
-    case .light, .semibold, .bold, .italicLight, .italic, .italicSemibold, .italicBold:
-      return "\(FontStyle.fontFamilyName)-\(rawValue)"
+    case .bold, .demibold:
+      return "\(FontStyle.fontFamilyName) \(rawValue)"
     }
   }
 }
