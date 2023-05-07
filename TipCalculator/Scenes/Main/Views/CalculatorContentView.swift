@@ -28,12 +28,12 @@ class CalculatorContentView: UIView {
     stackView.spacing = 16
     return stackView
   }()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
   }
-  
+
   @available(*, unavailable)
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -44,22 +44,22 @@ class CalculatorContentView: UIView {
 private extension CalculatorContentView {
   func setupViews() {
     backgroundColor = UIColor.bg
-    
+
     setupContainerView()
     setupStackView()
   }
-  
+
   func setupContainerView() {
     addSubview(containerView)
-    
+
     containerView.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
   }
-  
+
   func setupStackView() {
     containerView.addSubview(stackView)
-    
+
     stackView.snp.makeConstraints {
       $0.leading.equalTo(self.snp.leadingMargin).offset(16)
       $0.trailing.equalTo(self.snp.trailingMargin).offset(-16)
@@ -73,5 +73,3 @@ private extension CalculatorContentView {
     splitInputView.snp.makeConstraints { $0.height.equalTo(56) }
   }
 }
-
-

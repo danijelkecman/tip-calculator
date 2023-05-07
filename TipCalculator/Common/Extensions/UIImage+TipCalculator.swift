@@ -13,8 +13,7 @@ enum XCAssetImage: String {
 
 extension UIImage {
   convenience init(_ xcAsset: XCAssetImage) {
-    // swiftlint: disable force_unwrapping
+    // swiftlint:disable:next force_unwrapping
     self.init(named: xcAsset.rawValue)!
   }
 }
-

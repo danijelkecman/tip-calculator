@@ -21,7 +21,7 @@ public enum FontStyle: String {
 
 extension FontStyle {
   static let fontFamilyName = "Avenir Next"
-  
+
   var name: String {
     switch self {
     case .regular:

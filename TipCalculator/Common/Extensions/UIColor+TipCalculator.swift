@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+  // swiftlint:disable:next identifier_name
   static let bg = UIColor(hexString: "f5f3f4")
   static let primary = UIColor(hexString: "1cc9be")
   static let secondary = UIColor.systemOrange
@@ -20,6 +21,7 @@ extension UIColor {
     let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     var int = UInt64()
     Scanner(string: hex).scanHexInt64(&int)
+    // swiftlint:disable:next identifier_name
     let a, r, g, b: UInt64
     switch hex.count {
     case 3: // RGB (12-bit)
