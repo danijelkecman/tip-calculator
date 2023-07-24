@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Combine
+import CombineCocoa
 
 class BillInputView: UIView {
   let headerView = HeaderView()
@@ -14,13 +16,28 @@ class BillInputView: UIView {
   let currencyLabel = UILabel()
   let billTextField = UITextField()
 
+  private let billSubject: PassthroughSubject<Double, Never> = .init()
+  var valuePublisher: AnyPublisher<Double, Never> {
+    return billSubject.eraseToAnyPublisher()
+  }
+
+  private var cancellables = Set<AnyCancellable>()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
+    observe()
     setupViews()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been initialized")
+  }
+
+  private func observe() {
+    billTextField.textPublisher.sink { [weak self] text in
+      guard let self else { return }
+      billSubject.send(text?.doubleValue ?? 0)
+    }.store(in: &cancellables)
   }
 }
 

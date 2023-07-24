@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class TipInputView: UIView {
 
@@ -16,13 +17,28 @@ class TipInputView: UIView {
     return headerView
   }()
   private lazy var tenPercentTipButton: UIButton = {
-    return buildTipButton(tip: .tenPercent)
+    let button = buildTipButton(tip: .tenPercent)
+    button.tapPublisher.flatMap {
+      Just(Tip.tenPercent)
+    }.assign(to: \.value, on: tipSubject)
+      .store(in: &cancellables)
+    return button
   }()
   private lazy var fifteenPercentTipButton = {
-    return buildTipButton(tip: .fifteenPercent)
+    let button = buildTipButton(tip: .fifteenPercent)
+    button.tapPublisher.flatMap {
+      Just(Tip.fifteenPercent)
+    }.assign(to: \.value, on: tipSubject)
+      .store(in: &cancellables)
+    return button
   }()
   private lazy var twentyPercentTipButton = {
-    return buildTipButton(tip: .twentyPercent)
+    let button = buildTipButton(tip: .twentyPercent)
+    button.tapPublisher.flatMap {
+      Just(Tip.twentyPercent)
+    }.assign(to: \.value, on: tipSubject)
+      .store(in: &cancellables)
+    return button
   }()
   private lazy var customPercentTipButton = {
     let button = UIButton()
@@ -55,6 +71,12 @@ class TipInputView: UIView {
     stackView.axis = .vertical
     return stackView
   }()
+
+  private var cancellables = Set<AnyCancellable>()
+  private let tipSubject = CurrentValueSubject<Tip, Never>(.none)
+  var valuePublisher: AnyPublisher<Tip, Never> {
+    tipSubject.eraseToAnyPublisher()
+  }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
