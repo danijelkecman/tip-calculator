@@ -25,8 +25,8 @@ class BillInputView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    observe()
     setupViews()
+    observe()
   }
 
   required init?(coder: NSCoder) {

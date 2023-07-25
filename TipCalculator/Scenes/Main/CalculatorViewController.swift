@@ -37,18 +37,16 @@ extension CalculatorViewController {
   }
 
   private func bindViewModels() {
-    contentView.billInputView.valuePublisher.sink { bill in
-      print("bill \(bill)")
-    }.store(in: &cancellables)
-
     let input = CalculatorViewModel.Input(
       billPublisher: contentView.billInputView.valuePublisher,
       tipPublisher: contentView.tipInputView.valuePublisher,
-      splitPublisher: Just(5).eraseToAnyPublisher()
+      splitPublisher: contentView.splitInputView.valuePublisher
     )
     let output = viewModel.transform(input: input)
+
     output.updateViewPublisher.sink { result in
-      print(">>>> \(result)")
-    }.store(in: &cancellables)
+      print(result)
+    }
+    .store(in: &cancellables)
   }
 }

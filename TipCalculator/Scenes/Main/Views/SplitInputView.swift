@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import Combine
+import CombineCocoa
 
 class SplitInputView: UIView {
+  private var cancellables = Set<AnyCancellable>()
 
   private let headerView: HeaderView = {
     let view = HeaderView()
@@ -16,10 +19,20 @@ class SplitInputView: UIView {
     return view
   }()
   private lazy var decrementButton: UIButton = {
-    return buildButton(text: "-", corners: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
+    let button = buildButton(text: "-", corners: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
+    button.tapPublisher.flatMap { [unowned self] _ in
+      return Just(splitSubject.value == 1 ? 1 : splitSubject.value - 1)
+    }.assign(to: \.value, on: splitSubject)
+      .store(in: &cancellables)
+    return button
   }()
   private lazy var incrementButton: UIButton = {
-    return buildButton(text: "-", corners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner])
+    let button = buildButton(text: "-", corners: [.layerMaxXMinYCorner, .layerMaxXMaxYCorner])
+    button.tapPublisher.flatMap { [unowned self] _ in
+      return Just(splitSubject.value + 1)
+    }.assign(to: \.value, on: splitSubject)
+      .store(in: &cancellables)
+    return button
   }()
   private lazy var quantityLabel: UILabel = {
     let label = UILabel()
@@ -40,13 +53,25 @@ class SplitInputView: UIView {
     return stackView
   }()
 
+  private let splitSubject: CurrentValueSubject<Int, Never> = .init(1)
+  var valuePublisher: AnyPublisher<Int, Never> {
+    return splitSubject.removeDuplicates().eraseToAnyPublisher()
+  }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
+    observe()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been initialized")
+  }
+
+  private func observe() {
+    splitSubject.sink { [unowned self] quantity in
+      quantityLabel.text = quantity.stringValue
+    }.store(in: &cancellables)
   }
 }
 

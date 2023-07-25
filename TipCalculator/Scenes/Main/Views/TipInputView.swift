@@ -40,12 +40,16 @@ class TipInputView: UIView {
       .store(in: &cancellables)
     return button
   }()
-  private lazy var customPercentTipButton = {
+  private lazy var customTipButton = {
     let button = UIButton()
     button.setTitle("Custom tip", for: .normal)
     button.titleLabel?.font = UIFont.custom(type: .bold, size: 20)
     button.backgroundColor = .primary
     button.tintColor = .white
+    button.tapPublisher.sink { [weak self] _ in
+      guard let self else { return }
+      handleCustomTipButton()
+    }.store(in: &cancellables)
     button.addCornerRadius(radius: 8.0)
     return button
   }()
@@ -64,7 +68,7 @@ class TipInputView: UIView {
   private lazy var buttonVerticalStackView: UIStackView = {
     let stackView = UIStackView(arrangedSubviews: [
       buttonHorizontalStackView,
-      customPercentTipButton
+      customTipButton
     ])
     stackView.distribution = .fillEqually
     stackView.spacing = 16
@@ -73,7 +77,7 @@ class TipInputView: UIView {
   }()
 
   private var cancellables = Set<AnyCancellable>()
-  private let tipSubject = CurrentValueSubject<Tip, Never>(.none)
+  private let tipSubject: CurrentValueSubject<Tip, Never> = .init(.none)
   var valuePublisher: AnyPublisher<Tip, Never> {
     tipSubject.eraseToAnyPublisher()
   }
@@ -81,10 +85,35 @@ class TipInputView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
+    observe()
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been initialized")
+  }
+
+  private func observe() {
+    tipSubject.sink { [weak self] tip in
+      guard let self else { return }
+      resetView()
+      switch tip {
+      case .none:
+        break
+      case .tenPercent:
+        tenPercentTipButton.backgroundColor = .secondary
+      case .fifteenPercent:
+        fifteenPercentTipButton.backgroundColor = .secondary
+      case .twentyPercent:
+        twentyPercentTipButton.backgroundColor = .secondary
+      case .custom(let value):
+        customTipButton.backgroundColor = .secondary
+        let text = NSMutableAttributedString(string: "\(value) BAM",
+                                             attributes: [.font: UIFont.custom(type: .bold, size: 20)])
+        // swiftlint:disable:next legacy_constructor
+        text.addAttributes([.font: UIFont.custom(type: .bold, size: 14)], range: NSMakeRange(text.length - 3, 3))
+        customTipButton.setAttributedTitle(text, for: .normal)
+      }
+    }.store(in: &cancellables)
   }
 }
 
@@ -115,6 +144,40 @@ extension TipInputView {
 }
 
 extension TipInputView {
+  private func handleCustomTipButton() {
+    let alertController: UIAlertController = {
+      let controller = UIAlertController(title: "Enter custom tip", message: nil, preferredStyle: .alert)
+      controller.addTextField { textField in
+        textField.placeholder = "Make it generous!"
+        textField.keyboardType = .numberPad
+        textField.autocorrectionType = .no
+      }
+      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+      let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+        guard let self else { return }
+        guard
+          let text = controller.textFields?.first?.text,
+          let value = Int(text) else { return }
+        tipSubject.send(.custom(value: value))
+      }
+      [okAction, cancelAction].forEach(controller.addAction(_:))
+      return controller
+    }()
+    parentViewController?.present(alertController, animated: true)
+  }
+
+  private func resetView() {
+    [tenPercentTipButton,
+    fifteenPercentTipButton,
+    twentyPercentTipButton,
+     customTipButton].forEach {
+      $0.backgroundColor = .primary
+    }
+    let text = NSMutableAttributedString(string: "Custom tip",
+                                         attributes: [.font: UIFont.custom(type: .bold, size: 20)])
+    customTipButton.setAttributedTitle(text, for: .normal)
+  }
+
   private func buildTipButton(tip: Tip) -> UIButton {
     let button = UIButton(type: .custom)
     button.backgroundColor = .primary

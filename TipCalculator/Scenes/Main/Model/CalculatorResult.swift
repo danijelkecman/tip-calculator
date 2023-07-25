@@ -10,5 +10,5 @@ import Foundation
 struct CalculatorResult {
   let amountPerson: Double
   let totalBill: Double
-  let totalTill: Double
+  let totalTip: Double
 }
