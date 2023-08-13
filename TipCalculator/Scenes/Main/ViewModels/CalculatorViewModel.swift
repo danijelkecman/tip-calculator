@@ -18,7 +18,7 @@ class CalculatorViewModel {
 
   struct Output {
     let updateViewPublisher: AnyPublisher<CalculatorResult, Never>
-    let resultCalculatorPublisher: AnyPublisher<Void, Never>
+    let resetCalculatorPublisher: AnyPublisher<Void, Never>
   }
   
   private let audioPlayerService: AudioPlayerServiceProtocol
@@ -47,7 +47,7 @@ class CalculatorViewModel {
       return Just($0)
     }.eraseToAnyPublisher()
 
-    return Output(updateViewPublisher: updateViewPublisher, resultCalculatorPublisher: resultCalculatorPublisher)
+    return Output(updateViewPublisher: updateViewPublisher, resetCalculatorPublisher: resultCalculatorPublisher)
   }
 
   private func getTipAmount(bill: Double, tip: Tip) -> Double {
