@@ -25,6 +25,13 @@ class AmountView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not beeen initialized")
   }
+  
+  func configure(amount: Double) {
+    let text = NSMutableAttributedString(string: amount.currencyFormatted,
+                                         attributes: [.font: UIFont.custom(type: .bold, size: 24)])
+    text.addAttributes([.font: UIFont.custom(type: .bold, size: 16)], range: NSRange(location: 0, length: 1))
+    amountLabel.attributedText = text
+  }
 
   func setupViews() {
     backgroundColor = .white

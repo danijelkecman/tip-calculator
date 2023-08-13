@@ -46,8 +46,7 @@ class TipInputView: UIView {
     button.titleLabel?.font = UIFont.custom(type: .bold, size: 20)
     button.backgroundColor = .primary
     button.tintColor = .white
-    button.tapPublisher.sink { [weak self] _ in
-      guard let self else { return }
+    button.tapPublisher.sink { [unowned self] _ in
       handleCustomTipButton()
     }.store(in: &cancellables)
     button.addCornerRadius(radius: 8.0)
@@ -114,6 +113,10 @@ class TipInputView: UIView {
         customTipButton.setAttributedTitle(text, for: .normal)
       }
     }.store(in: &cancellables)
+  }
+  
+  func reset() {
+    tipSubject.send(.none)
   }
 }
 

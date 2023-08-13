@@ -22,6 +22,9 @@
 		696174292A07EB0900274040 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696174282A07EB0900274040 /* HeaderView.swift */; };
 		696174302A0855E100274040 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6961742F2A0855E100274040 /* CalculatorViewModel.swift */; };
 		696174332A085B0000274040 /* CalculatorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696174322A085B0000274040 /* CalculatorResult.swift */; };
+		697358742A892CB1008E8BB8 /* Double+TipCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697358732A892CB1008E8BB8 /* Double+TipCalculator.swift */; };
+		697358762A8931F9008E8BB8 /* click.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 697358752A8931F9008E8BB8 /* click.m4a */; };
+		697358792A893253008E8BB8 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697358782A893253008E8BB8 /* AudioPlayerService.swift */; };
 		69E6BC0029A7BC5C0080EF78 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BBFF29A7BC5C0080EF78 /* CombineCocoa */; };
 		69E6BC0829A7BCB30080EF78 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BC0729A7BCB30080EF78 /* CombineCocoa */; };
 		69E6BC0B29A7BD0F0080EF78 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BC0A29A7BD0F0080EF78 /* SnapshotTesting */; };
@@ -77,6 +80,9 @@
 		696174282A07EB0900274040 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		6961742F2A0855E100274040 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		696174322A085B0000274040 /* CalculatorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorResult.swift; sourceTree = "<group>"; };
+		697358732A892CB1008E8BB8 /* Double+TipCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+TipCalculator.swift"; sourceTree = "<group>"; };
+		697358752A8931F9008E8BB8 /* click.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.m4a; sourceTree = "<group>"; };
+		697358782A893253008E8BB8 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		69E6BC1529A7C0250080EF78 /* CalculatorContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorContentView.swift; sourceTree = "<group>"; };
 		69E6BC1729A7C12C0080EF78 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		69E6BC1929A7C1880080EF78 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -146,8 +152,9 @@
 			children = (
 				69E6BC1229A7BFC40080EF78 /* App */,
 				69E6BC2129A7CE920080EF78 /* Common */,
-				69E6BC1129A7BFBB0080EF78 /* Resources */,
+				697358772A893224008E8BB8 /* Services */,
 				69E6BC1329A7BFCC0080EF78 /* Scenes */,
+				69E6BC1129A7BFBB0080EF78 /* Resources */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -204,6 +211,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		697358772A893224008E8BB8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				697358782A893253008E8BB8 /* AudioPlayerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		69E6BC0629A7BCB30080EF78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				6921878B29A7BAC500AC6427 /* Assets.xcassets */,
+				697358752A8931F9008E8BB8 /* click.m4a */,
 				6921879029A7BAC500AC6427 /* Info.plist */,
 				6921878D29A7BAC500AC6427 /* LaunchScreen.storyboard */,
 			);
@@ -272,6 +288,7 @@
 				6926AD9F2A6F1170008B108F /* String+TipCalculator.swift */,
 				6926ADA12A6F1AE7008B108F /* UIResponder+TipCalculator.swift */,
 				6926ADA62A7037C2008B108F /* Int+TipCalculator.swift */,
+				697358732A892CB1008E8BB8 /* Double+TipCalculator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -401,6 +418,7 @@
 			files = (
 				6921878C29A7BAC500AC6427 /* Assets.xcassets in Resources */,
 				6921878F29A7BAC500AC6427 /* LaunchScreen.storyboard in Resources */,
+				697358762A8931F9008E8BB8 /* click.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,11 +510,13 @@
 				69E6BC1C29A7C1CE0080EF78 /* BillInputView.swift in Sources */,
 				69E6BC1629A7C0250080EF78 /* CalculatorContentView.swift in Sources */,
 				696174332A085B0000274040 /* CalculatorResult.swift in Sources */,
+				697358742A892CB1008E8BB8 /* Double+TipCalculator.swift in Sources */,
 				6926ADA72A7037C2008B108F /* Int+TipCalculator.swift in Sources */,
 				6921878729A7BAC400AC6427 /* CalculatorViewController.swift in Sources */,
 				696174302A0855E100274040 /* CalculatorViewModel.swift in Sources */,
 				6926ADA22A6F1AE7008B108F /* UIResponder+TipCalculator.swift in Sources */,
 				696174292A07EB0900274040 /* HeaderView.swift in Sources */,
+				697358792A893253008E8BB8 /* AudioPlayerService.swift in Sources */,
 				69E6BC1829A7C12C0080EF78 /* LogoView.swift in Sources */,
 				69E6BC1A29A7C1880080EF78 /* ResultView.swift in Sources */,
 				6921878529A7BAC400AC6427 /* SceneDelegate.swift in Sources */,

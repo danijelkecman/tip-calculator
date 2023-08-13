@@ -34,10 +34,14 @@ class BillInputView: UIView {
   }
 
   private func observe() {
-    billTextField.textPublisher.sink { [weak self] text in
-      guard let self else { return }
+    billTextField.textPublisher.sink { [unowned self] text in
       billSubject.send(text?.doubleValue ?? 0)
     }.store(in: &cancellables)
+  }
+  
+  func reset() {
+    billTextField.text = nil
+    billSubject.send(0)
   }
 }
 
