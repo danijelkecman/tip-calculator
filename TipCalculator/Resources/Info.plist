@@ -19,5 +19,22 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Ubuntu-L.ttf</string>
+		<string>Ubuntu-C.ttf</string>
+		<string>Ubuntu-B.ttf</string>
+		<string>Ubuntu-BI.ttf</string>
+		<string>Ubuntu-LI.ttf</string>
+		<string>Ubuntu-M.ttf</string>
+		<string>Ubuntu-MI.ttf</string>
+		<string>Ubuntu-R.ttf</string>
+		<string>Ubuntu-RI.ttf</string>
+	</array>
 </dict>
 </plist>

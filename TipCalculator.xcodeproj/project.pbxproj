@@ -26,6 +26,9 @@
 		697358762A8931F9008E8BB8 /* click.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 697358752A8931F9008E8BB8 /* click.m4a */; };
 		697358792A893253008E8BB8 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697358782A893253008E8BB8 /* AudioPlayerService.swift */; };
 		6973587B2A895DCF008E8BB8 /* TipCalculatorSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6973587A2A895DCF008E8BB8 /* TipCalculatorSnapshotTests.swift */; };
+		69AE932F2A89791500BDB540 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AE932E2A89791500BDB540 /* Localizable.strings */; };
+		69AE93312A89792E00BDB540 /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 69AE93302A89792E00BDB540 /* Font */; };
+		69AE93332A89798000BDB540 /* Logger+TipCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AE93322A89798000BDB540 /* Logger+TipCalculator.swift */; };
 		69E6BC0029A7BC5C0080EF78 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BBFF29A7BC5C0080EF78 /* CombineCocoa */; };
 		69E6BC0829A7BCB30080EF78 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BC0729A7BCB30080EF78 /* CombineCocoa */; };
 		69E6BC0B29A7BD0F0080EF78 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 69E6BC0A29A7BD0F0080EF78 /* SnapshotTesting */; };
@@ -85,6 +88,9 @@
 		697358752A8931F9008E8BB8 /* click.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.m4a; sourceTree = "<group>"; };
 		697358782A893253008E8BB8 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		6973587A2A895DCF008E8BB8 /* TipCalculatorSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorSnapshotTests.swift; sourceTree = "<group>"; };
+		69AE932E2A89791500BDB540 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		69AE93302A89792E00BDB540 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Font; sourceTree = "<group>"; };
+		69AE93322A89798000BDB540 /* Logger+TipCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+TipCalculator.swift"; sourceTree = "<group>"; };
 		69E6BC1529A7C0250080EF78 /* CalculatorContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorContentView.swift; sourceTree = "<group>"; };
 		69E6BC1729A7C12C0080EF78 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		69E6BC1929A7C1880080EF78 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -222,6 +228,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		69AE932D2A8978FF00BDB540 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				69AE932E2A89791500BDB540 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		69E6BC0629A7BCB30080EF78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +246,8 @@
 		69E6BC1129A7BFBB0080EF78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				69AE93302A89792E00BDB540 /* Font */,
+				69AE932D2A8978FF00BDB540 /* Localization */,
 				6921878B29A7BAC500AC6427 /* Assets.xcassets */,
 				697358752A8931F9008E8BB8 /* click.m4a */,
 				6921879029A7BAC500AC6427 /* Info.plist */,
@@ -292,6 +308,7 @@
 				6926ADA12A6F1AE7008B108F /* UIResponder+TipCalculator.swift */,
 				6926ADA62A7037C2008B108F /* Int+TipCalculator.swift */,
 				697358732A892CB1008E8BB8 /* Double+TipCalculator.swift */,
+				69AE93322A89798000BDB540 /* Logger+TipCalculator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,7 +436,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AE93312A89792E00BDB540 /* Font in Resources */,
 				6921878C29A7BAC500AC6427 /* Assets.xcassets in Resources */,
+				69AE932F2A89791500BDB540 /* Localizable.strings in Resources */,
 				6921878F29A7BAC500AC6427 /* LaunchScreen.storyboard in Resources */,
 				697358762A8931F9008E8BB8 /* click.m4a in Resources */,
 			);
@@ -514,6 +533,7 @@
 				69E6BC1629A7C0250080EF78 /* CalculatorContentView.swift in Sources */,
 				696174332A085B0000274040 /* CalculatorResult.swift in Sources */,
 				697358742A892CB1008E8BB8 /* Double+TipCalculator.swift in Sources */,
+				69AE93332A89798000BDB540 /* Logger+TipCalculator.swift in Sources */,
 				6926ADA72A7037C2008B108F /* Int+TipCalculator.swift in Sources */,
 				6921878729A7BAC400AC6427 /* CalculatorViewController.swift in Sources */,
 				696174302A0855E100274040 /* CalculatorViewModel.swift in Sources */,
