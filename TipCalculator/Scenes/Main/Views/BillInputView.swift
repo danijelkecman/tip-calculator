@@ -55,7 +55,8 @@ extension BillInputView {
   func setupHeaderView() {
     [headerView, textFieldContainerView].forEach(addSubview(_:))
 
-    headerView.configure(topText: "Enter", bottomText: "your bill")
+    headerView.configure(topText: "bill_input_view_header_view_top_text".localized(),
+                         bottomText: "bill_input_view_header_view_bottom_text".localized())
     headerView.snp.makeConstraints {
       $0.leading.equalToSuperview()
       $0.centerY.equalTo(textFieldContainerView.snp.centerY)
@@ -73,7 +74,7 @@ extension BillInputView {
   func setupCurrencyLabel() {
     textFieldContainerView.addSubview(currencyLabel)
 
-    currencyLabel.text = "$"
+    currencyLabel.text = "bill_input_view_currency_label_text".localized()
     currencyLabel.font = UIFont.custom(type: .bold, size: 24)
     currencyLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
@@ -102,7 +103,10 @@ extension BillInputView {
     let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 36))
     toolbar.barStyle = .default
     toolbar.sizeToFit()
-    let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
+    let doneButton = UIBarButtonItem(title: "bill_input_view_bill_text_field_done".localized(),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(doneButtonTapped))
     toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton]
     toolbar.isUserInteractionEnabled = true
     billTextField.inputAccessoryView = toolbar

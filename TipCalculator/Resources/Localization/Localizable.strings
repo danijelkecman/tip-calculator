@@ -5,3 +5,16 @@
   Created by Danijel Kecman on 8/13/23.
   
 */
+// app
+"app_name" = "Mr TIP";
+"app_name_bottom_label" = "Calculator";
+
+// amount view
+"amount_view_amount_label_text" = "$0";
+
+// bill input view
+"bill_input_view_header_view_top_text" = "Enter";
+"bill_input_view_header_view_bottom_text" = "your tip";
+"bill_input_view_currency_label_text" = "$";
+"bill_input_view_bill_text_field_done" = "Done";
+

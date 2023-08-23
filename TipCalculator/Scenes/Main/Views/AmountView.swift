@@ -63,7 +63,8 @@ class AmountView: UIView {
   func setupAmountLabel() {
     amountLabel.textAlignment = textAlignment
     amountLabel.textColor = .primary
-    let text = NSMutableAttributedString(string: "$0", attributes: [.font: UIFont.custom(type: .bold, size: 24)])
+    let text = NSMutableAttributedString(string: "amount_view_amount_label_text".localized(), 
+                                         attributes: [.font: UIFont.custom(type: .bold, size: 24)])
     // swiftlint:disable:next legacy_constructor
     text.addAttributes([.font: UIFont.custom(type: .bold, size: 16)], range: NSMakeRange(0, 1))
     amountLabel.attributedText = text

@@ -71,7 +71,7 @@ extension LogoView {
 
   func setupTopLabel() {
     let text = NSMutableAttributedString(
-      string: "Mr TIP",
+      string: "app_name".localized(),
       attributes: [.font: UIFont.custom(type: .demibold, size: 16)])
     // swiftlint:disable:next legacy_constructor
     text.addAttributes([.font: UIFont.custom(type: .bold, size: 24)], range: NSMakeRange(3, 3))
@@ -82,7 +82,7 @@ extension LogoView {
     let style = NSMutableParagraphStyle()
     style.alignment = .center
     let text = NSMutableAttributedString(
-      string: "Calculator",
+      string: "app_name_bottom_label".localized(),
       attributes: [
         .font: UIFont.custom(type: .demibold, size: 16),
         .paragraphStyle: style
