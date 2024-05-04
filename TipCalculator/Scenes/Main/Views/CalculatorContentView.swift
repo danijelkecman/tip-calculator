@@ -43,7 +43,7 @@ class CalculatorContentView: UIView {
 // MARK: - Private Methods
 private extension CalculatorContentView {
   func setupViews() {
-    backgroundColor = UIColor.bg
+    backgroundColor = UIColor.systemBackground
 
     setupContainerView()
     setupStackView()
